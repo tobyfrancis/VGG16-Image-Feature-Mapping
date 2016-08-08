@@ -1,6 +1,5 @@
 # VGGNet-Image-Visualization
 
-
 ## Synopsis
 
 A tool to create maps of image similarities from VGG16 Features, using tSNE for the reduction of features into a 2-Dimensional space representative of how similar the image features are.
@@ -13,10 +12,9 @@ As the bare minimum, this tool requires the installation of the following packag
 - Keras (which requires either TensorFlow or Theano)
 - Click
 
-You also need to specify the path to the weights for the VGG16 model. This setting is controlled by the option -v in the interface, which is by default set to point to "weights/vgg16_weights.h5". These weights are available [here](https://drive.google.com/a/andrew.cmu.edu/file/d/0Bz7KyqmuGsilT0J5dmRCM0ROVHc).
+You also need to specify the path to the weights for the VGG16 model. This setting is controlled by the option "-v" in the interface, which is by default set to point to "weights/vgg16_weights.h5". [These weights are available here](https://drive.google.com/a/andrew.cmu.edu/file/d/0Bz7KyqmuGsilT0J5dmRCM0ROVHc).
 
 If you want to enable clustering, which displays images only if they are a part of clusters in the feature-space, you must have HDBScan installed.
-For usage on GPU, Theano is required (and CNMeM is highly recommended).
 
 ## Usage
 
@@ -39,7 +37,7 @@ python image_map.py --help
 
 ## Motivation
 
-This tool was originally used to explore datasets of microstructure microscopy images. Traditional feature extraction methods (such as SIFT) were considerably less successful in grouping semantically similar images together (in terms of their microstructural constituents), and thus tool was created as an alternative method.
+This tool was originally used to explore datasets of microstructure microscopy images. Traditional feature extraction methods (such as SIFT) were considerably less successful in grouping semantically similar images together (in terms of their microstructural constituents), and thus this tool was created as an alternative method.
 
 ## Contributors
 
