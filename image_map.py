@@ -8,7 +8,6 @@ import json
 from scripts.find_images import *
 from scripts.montage import *
 from scripts.load_images import *
-from scripts.VGG_keras import *
 
 from skimage.io import imread, imsave
 from sklearn.decomposition import PCA
@@ -44,6 +43,9 @@ def tsne(directory, gpu, color, image_filename, clustering, min_cluster_size, js
             os.environ["THEANO_FLAGS"] = "device=gpu, floatX=float32, lib.cnmem=0.75"
         else:
             os.environ["THEANO_FLAGS"] = "device=gpu, floatX=float32"
+
+    from scripts.VGG_keras import vggmodel
+
     if clustering:
         import hdbscan
 
@@ -60,7 +62,9 @@ def tsne(directory, gpu, color, image_filename, clustering, min_cluster_size, js
 
     print('Loading Model...')
     try:
-        model = vggmodel('models/'+vgg_weights)
+        model = vggmodel(vgg_weights)
+    except FileNotFoundError:
+        raise FileNotFoundError('Please download and specify the path to the weights for VGG16')
 
     print('Done.')
     sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
@@ -117,7 +121,7 @@ def check_input_types(directory, gpu, color, image_filename, clustering, min_clu
         image_filename = str(json_filename)
 
     if not (type(vgg_weights) is str and vgg_weights[-3:]=='.h5'):
-        raise TypeError('Please specify VGG Weights Filename with a .h5 File in the models/ directory')
+        raise TypeError('Please specify VGG Weights Filename with a .h5 File')
 
     if not type(min_cluster_size) is int:
         if type(min_cluster_size) is float:
@@ -174,7 +178,7 @@ def check_input_types(directory, gpu, color, image_filename, clustering, min_clu
         else:
             raise TypeError('Please specify if you are using cnmem with a boolean')
 
-    return directory, gpu, color, image_filename, clustering, min_cluster_size, json_filename, cnmem
+    return directory, gpu, color, image_filename, clustering, min_cluster_size, json_filename, cnmem, vgg_weights
 
 if __name__ == '__main__':
     tsne()
