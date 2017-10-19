@@ -1,5 +1,9 @@
 # VGGNet-Image-Visualization
 
+## Fair Warning
+
+This code was written fairly early into my work on unsupervised scientific image analysis,  and is written for an old version of Keras *and assumed the use of Theano*. An update of this code will be made in the near future, but until then, be warned that it might require quite a bit of work to get this code to work 
+
 ## Synopsis
 
 A tool to create maps of image similarities from VGG16 Features, using tSNE for the reduction of features into a 2-Dimensional space representative of how similar the image features are.
@@ -9,7 +13,7 @@ A tool to create maps of image similarities from VGG16 Features, using tSNE for 
 As the bare minimum, this tool requires the installation of the following packages:
 - numpy, h5py
 - sci-kit image and sci-kit learn
-- Keras (which requires either TensorFlow or Theano)
+- Keras + Theano
 - Click
 
 You also need to specify the path to the weights for the VGG16 model. This setting is controlled by the option "-v" in the interface, which is by default set to point to "weights/vgg16_weights.h5". [These weights are available here](https://drive.google.com/a/andrew.cmu.edu/file/d/0Bz7KyqmuGsilT0J5dmRCM0ROVHc).
